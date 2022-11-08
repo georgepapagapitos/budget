@@ -23,12 +23,9 @@ function App() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(itemInputValue);
     getItems();
     setItemInputValue(initialItemState);
   };
-
-  console.log(itemArray);
 
   return (
     <div className='app'>
