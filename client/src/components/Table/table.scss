@@ -1,0 +1,29 @@
+.table-wrapper {
+  text-align: left;
+}
+
+.table-head,
+.table-foot {
+  background-color: #FFFFFF;
+  font-weight: 700;
+}
+
+.table-body {
+  background-color: #FFFFFF;
+}
+
+.table {
+  border-collapse: collapse;
+  border: 2px solid #000000;
+  font-family: sans-serif;
+  font-size: .8rem;
+  letter-spacing: 1px;
+  margin-bottom: 2.5rem;
+  min-width: 100%;
+}
+
+td,
+th {
+  border: 1px solid black;
+  padding: 5px 10px;
+}

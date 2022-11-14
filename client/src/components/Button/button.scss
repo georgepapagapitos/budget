@@ -1,0 +1,54 @@
+.button {
+  border: none;
+  outline: none;
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  font-weight: 700;
+
+  &-submit {
+    box-shadow: 0 0 0 1px #00008b;
+    background-color: #87ceeb;
+    color: #00008b;
+
+    &:hover {
+      box-shadow: 0 0 0 1px #02025f;
+      background-color: #38addc;
+      color: #02025f;
+    }
+
+    &:focus {
+      box-shadow: 0 0 0 1px #02025f, 0 0 0 2px #FFFFFF, 0 0 0 4px #00008b;
+    }
+  }
+
+  &-cancel {
+    box-shadow: 0 0 0 1px #e4470d;
+    background-color: transparent;
+    color: #e4470d;
+
+    &:hover {
+      box-shadow: 0 0 0 1px #892906;
+      background-color: #f0c2b2;
+      color: #892906;
+    }
+
+    &:focus {
+      box-shadow: 0 0 0 1px #892906, 0 0 0 2px #FFFFFF, 0 0 0 4px #892906;
+    }
+  }
+
+  &-delete {
+    background-color: transparent;
+    color: #ff0000;
+    padding: 0.25rem;
+
+    &:hover {
+      color: #b20707;
+    }
+
+    &:focus {
+      box-shadow: 0 0 0 1px #ff0000;
+    }
+  }
+}

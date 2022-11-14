@@ -1,0 +1,78 @@
+.app {
+  background-color: lightpink;
+  display: flex;
+  margin: auto;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem;
+}
+
+.form-wrapper {
+  margin-bottom: 3rem;
+}
+
+.form {
+  background-color: rgb(255, 220, 232);
+  border: 1px solid black;
+  border-radius: 0.25rem;
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+}
+
+.radio {
+  box-shadow: none;
+
+  &:focus {
+    box-shadow: 0 0 0 2px transparent, 0 0 0 2px #00008b;
+  }
+}
+
+.helper-text {
+  font-size: 0.75rem;
+  font-weight: 300;
+  margin-bottom: 0.25rem;
+}
+
+.padding {
+  &-none {
+    padding: 0;
+  }
+}
+
+.align {
+  &-right {
+    text-align: right;
+  }
+
+  &-left {
+    text-align: left;
+  }
+
+  &-center {
+    text-align: center;
+  }
+}
+
+ul {
+  padding: 0;
+  display: flex;
+  gap: 1rem;
+}
+
+li {
+  list-style-type: none;
+}
+
+.button-group {
+  display: flex;
+  gap: 2rem;
+  justify-content: flex-end;
+  margin-top: 0.75rem;
+}
+
+@media only screen and (max-width: 720px) {
+  .app {
+    flex-direction: column;
+  }
+}

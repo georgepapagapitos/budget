@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
-import axios from 'axios';
-import './styles.css';
+import { getItems, postItem } from './apiCalls';
+import './styles.scss';
+import { Button, Label, Select, Table, TextField } from "./components";
+import { categories } from './helpers/categories';
 
 export const App = () => {
   const initialItemState = { name: '', type: '', category: '', amount: '', };
@@ -8,37 +10,15 @@ export const App = () => {
   const [itemInputValue, setItemInputValue] = useState(initialItemState);
   const [itemArray, setItemArray] = useState([]);
 
-  const getItems = async () => {
-    try {
-      const items = await axios.get("/api/v1/items");
-      setItemArray(items.data);
-    } catch (error) {
-      console.error({ message: error.message });
-    }
-  };
-
-  const addItem = async (itemToAdd) => {
-    try {
-      await axios.post("/api/v1/items", itemToAdd);
-    } catch (error) {
-      console.error({ message: error.message });
-    }
-  };
-
   useEffect(() => {
-    getItems();
-  }, [itemArray]);
+    getItems(setItemArray);
+  }, []);
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    try {
-      addItem(itemInputValue);
-      setItemInputValue(initialItemState);
-      getItems();
-    } catch (error) {
-      console.error({ message: error.message });
-    }
-    getItems();
+    postItem(itemArray, itemInputValue, setItemArray);
+    console.log(itemInputValue);
+    setItemInputValue(initialItemState);
   };
 
   const handleChange = (name, value) => {
@@ -47,21 +27,23 @@ export const App = () => {
 
   return (
     <div className='app'>
+      <h1>Budget</h1>
       <div className='form-wrapper'>
         <h2>Add item</h2>
-        <form className='form'>
-          <label className='form-label'>Name:</label>
-          <input
+        <form className='form' onSubmit={handleSubmit}>
+          <Label id='item-name-input' label='Name:' />
+          <TextField
             name='name'
+            id='item-name-input'
             onChange={({ target }) => handleChange(target.name, target.value)}
-            required
             value={itemInputValue.name}
           />
-          <label className='form-label'>Amount:</label>
-          <input
+          <Label id='item-amount-input' label='Amount:' />
+          <TextField
             name='amount'
+            id='item-amount-input'
             onChange={({ target }) => handleChange(target.name, target.value)}
-            required
+            type='number'
             value={itemInputValue.amount}
           />
           <ul>
@@ -70,6 +52,7 @@ export const App = () => {
               <label htmlFor='income'>Income:</label>
               <input
                 checked={itemInputValue.type === 'income'}
+                className='input radio'
                 id='income'
                 name='type'
                 onChange={({ target }) => handleChange(target.name, target.value)}
@@ -81,6 +64,7 @@ export const App = () => {
               <label htmlFor='expense'>Expense:</label>
               <input
                 checked={itemInputValue.type === 'expense'}
+                className='input radio'
                 id='expense'
                 name='type'
                 onChange={({ target }) => handleChange(target.name, target.value)}
@@ -89,78 +73,45 @@ export const App = () => {
               />
             </li>
           </ul>
-          <button
-            onClick={(e) => handleSubmit(e)}
-            type='submit'
+          <label htmlFor='item-category-select' className='form-label'>Category:</label>
+          <span className='helper-text'>Only available for expenses</span>
+          <Select
+            disabled={itemInputValue.type !== 'expense'}
+            id='item-category-select'
+            onChange={({ target }) => handleChange(target.name, target.value)}
+            value={itemInputValue.category}
           >
-            Submit
-          </button>
+            <option value='' disabled>Select a category</option>
+            {categories.map((category, i) => (
+              <option
+                key={category + i}
+                value={category.value}
+              >
+                {category.displayName}
+              </option>
+            ))}
+          </Select>
+          <div className='button-group'>
+            <Button
+              variant='cancel'
+              onClick={() => setItemInputValue(initialItemState)}
+            >Cancel
+            </Button>
+            <Button
+              variant='submit'
+            >
+              Submit
+            </Button>
+          </div>
         </form>
       </div>
-      <div className='table-wrapper'>
-        <h2>Income</h2>
-        <table className='table'>
-          <thead className='table-head'>
-            <tr>
-              <th>Name</th>
-              <th className='align-right'>Amount</th>
-            </tr>
-          </thead>
-          <tbody className='table-body'>
-            {itemArray
-              .filter(item => item.type === 'income')
-              .map((item, i) => (
-                <tr key={`item-${i}`}>
-                  <td>{item.name}</td>
-                  <td className='align-right'>${item.amount}</td>
-                </tr>
-              ))}
-          </tbody>
-          <tfoot className='table-foot'>
-            <tr>
-              <th>Total</th>
-              <td className='align-right'>
-                ${itemArray
-                  .filter(item => item.type === 'income')
-                  .reduce((acc, item) => acc + item.amount, 0)
-                  .toFixed(2)
-                }
-              </td>
-            </tr>
-          </tfoot>
-        </table>
-        <h2>Expenses</h2>
-        <table className='table'>
-          <thead className='table-head'>
-            <tr>
-              <th>Name</th>
-              <th className='align-right'>Amount</th>
-            </tr>
-          </thead>
-          <tbody className='table-body'>
-            {itemArray
-              .filter(item => item.type === 'expense')
-              .map((item, i) => (
-                <tr key={`item-${i}`}>
-                  <td>{item.name}</td>
-                  <td className='align-right'>${item.amount}</td>
-                </tr>
-              ))}
-          </tbody>
-          <tfoot className='table-foot'>
-            <tr>
-              <th>Total</th>
-              <td className='align-right'>
-                ${itemArray
-                  .filter(item => item.type === 'expense')
-                  .reduce((acc, item) => acc + item.amount, 0)
-                  .toFixed(2)
-                }
-              </td>
-            </tr>
-          </tfoot>
-        </table>
-      </div>
+      {itemArray.length > 0 &&
+        <div className='table-wrapper'>
+          <h2>Income</h2>
+          <Table itemArray={itemArray} itemType='income' setItemArray={setItemArray} />
+          <h2>Expenses</h2>
+          <Table itemArray={itemArray} itemType='expense' setItemArray={setItemArray} />
+        </div>}
     </div>
   );
 };

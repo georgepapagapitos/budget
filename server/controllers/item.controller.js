@@ -19,7 +19,7 @@ export const getItem = async (req, res) => {
 };
 
 
-export const addItem = async (req, res) => {
+export const postItem = async (req, res) => {
   const item = req.body;
   const newItem = new Item(item);
 
