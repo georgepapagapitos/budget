@@ -1,7 +1,11 @@
 import React from 'react';
 import './button.scss';
 
-export const Button = ({ children, className, onClick, type, variant = 'submit', ...props }) => {
+interface ButtonProps extends React.HTMLProps<HTMLButtonElement> {
+  variant?: 'submit' | 'cancel' | 'reset' | 'delete';
+}
+
+export const Button: React.FC<ButtonProps> = ({ children, className, onClick, type, variant = 'submit', ...props }) => {
 
   const buttonClasses = `button${` button-${variant}${` ${className ? className : ''}`}`}`;
 
@@ -9,7 +13,6 @@ export const Button = ({ children, className, onClick, type, variant = 'submit',
     <button
       className={buttonClasses}
       onClick={onClick}
-      type={variant === 'submit' ? 'submit' : type ? type : 'button'}
       {...props}
     >
       {children}

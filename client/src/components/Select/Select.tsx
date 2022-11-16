@@ -1,8 +1,17 @@
 import React from 'react';
 import './select.scss';
 
-export const Select = ({ children, className, disabled, id, onChange, value, ...props }) => {
+interface SelectProps extends React.HTMLProps<HTMLSelectElement> { }
 
+export const Select: React.FC<SelectProps> = ({
+  children,
+  className,
+  disabled,
+  id,
+  onChange,
+  value,
+  ...props
+}) => {
   const selectClasses = `select${disabled ? ' disabled' : ''}`;;
 
   return (

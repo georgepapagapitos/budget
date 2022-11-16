@@ -3,9 +3,9 @@ import { getTransactions, getTransaction, postTransaction, deleteTransaction } f
 
 const router = express.Router();
 
-router.get("/", getTransactions);
-router.get("/:id", getTransaction);
-router.post("/", postTransaction);
-router.delete("/:id", deleteTransaction);
+router.get('/', getTransactions);
+router.get('/:id', getTransaction);
+router.post('/', postTransaction);
+router.delete('/:id', deleteTransaction);
 
 export default router;

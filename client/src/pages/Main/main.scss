@@ -1,0 +1,38 @@
+.main {
+  padding: 0.5rem 3rem 3rem 3rem;
+
+  .form {
+    background-color: rgb(255, 220, 232);
+    border: 1px solid black;
+    border-radius: 0.25rem;
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+
+    &-wrapper {
+      margin-bottom: 3rem;
+    }
+
+    &-title {
+      margin-bottom: 0.25rem;
+    }
+
+    .helper-text {
+      font-size: 0.75rem;
+      font-weight: 300;
+      margin-bottom: 0.25rem;
+    }
+
+    .button-group {
+      display: flex;
+      gap: 2rem;
+      justify-content: flex-end;
+      margin-top: 0.75rem;
+    }
+
+    .fieldset {
+      border-color: #00008b;
+      margin-bottom: 0.75rem;
+    }
+  }
+}
