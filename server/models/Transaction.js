@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-const ItemSchema = mongoose.Schema({
+const TransactionSchema = mongoose.Schema({
   name: {
     type: String,
     required: true,
@@ -20,7 +20,7 @@ const ItemSchema = mongoose.Schema({
   },
 });
 
-ItemSchema.set('toJSON', {
+TransactionSchema.set('toJSON', {
   transform: (_, returnedObject) => {
     returnedObject.id = returnedObject._id.toString();
     delete returnedObject._id;
@@ -28,4 +28,4 @@ ItemSchema.set('toJSON', {
   }
 });
 
-export const Item = mongoose.model('Item', ItemSchema);
+export const Transaction = mongoose.model('Transaction', TransactionSchema);

@@ -1,16 +1,16 @@
 import React from 'react';
-import { deleteItem } from '../../apiCalls';
+import { deleteTransaction } from '../../apiCalls';
 import { Button } from '../Button/Button';
 import './table.scss';
 
-export const Table = ({ itemArray, itemType, setItemArray }) => {
+export const Table = ({ transactionArray, transactionType, setTransactionArray }) => {
 
-  const handleDelete = async (e, item) => {
+  const handleDelete = async (e, transaction) => {
     e.preventDefault();
-    if (window.confirm(`delete ${item.name}?`)) {
-      deleteItem(item.id);
-      setItemArray(itemArray.filter((i) => {
-        return item.id !== i.id;
+    if (window.confirm(`delete ${transaction.name}?`)) {
+      deleteTransaction(transaction.id);
+      setTransactionArray(transactionArray.filter((i) => {
+        return transaction.id !== i.id;
       }));
     }
   };
@@ -25,16 +25,16 @@ export const Table = ({ itemArray, itemType, setItemArray }) => {
         </tr>
       </thead>
       <tbody className='table-body'>
-        {itemArray
-          .filter(item => item.type === itemType)
-          .map((item, i) => (
-            <tr key={`item-${i}`}>
-              <td>{item.name}</td>
-              <td className='align-right'>${item.amount}</td>
+        {transactionArray
+          .filter(transaction => transaction.type === transactionType)
+          .map((transaction, i) => (
+            <tr key={`transaction-${i}`}>
+              <td>{transaction.name}</td>
+              <td className='align-right'>${transaction.amount}</td>
               <td className='align-center padding-none'>
                 <Button
                   variant='delete'
-                  onClick={(e) => handleDelete(e, item)}
+                  onClick={(e) => handleDelete(e, transaction)}
                 >
                   X
                 </Button>
@@ -46,9 +46,9 @@ export const Table = ({ itemArray, itemType, setItemArray }) => {
         <tr>
           <td>Total</td>
           <td className='align-right'>
-            ${itemArray
-              .filter(item => item.type === itemType)
-              .reduce((acc, item) => acc + item.amount, 0)
+            ${transactionArray
+              .filter(transaction => transaction.type === transactionType)
+              .reduce((acc, transaction) => acc + transaction.amount, 0)
               .toFixed(2)
             }
           </td>

@@ -1,26 +1,26 @@
 import axios from 'axios';
 
-export const getItems = async (setItemArray) => {
+export const getTransactions = async (setTransactionArray) => {
   try {
-    const items = await axios.get('/api/v1/items');
-    setItemArray(items.data);
+    const transactions = await axios.get('/api/v1/transactions');
+    setTransactionArray(transactions.data);
   } catch (error) {
     console.error({ message: error.message });
   }
 };
 
-export const postItem = async (itemArray, itemToPost, setItemArray) => {
+export const postTransaction = async (transactionArray, transactionToPost, setTransactionArray) => {
   try {
-    const postedItem = await axios.post('/api/v1/items', itemToPost);
-    setItemArray([...itemArray, postedItem.data]);
+    const postedTransaction = await axios.post('/api/v1/transactions', transactionToPost);
+    setTransactionArray([...transactionArray, postedTransaction.data]);
   } catch (error) {
     console.error({ message: error.message });
   }
 };
 
-export const deleteItem = async (idToDelete) => {
+export const deleteTransaction = async (idToDelete) => {
   try {
-    await axios.delete(`/api/v1/items/${idToDelete}`);
+    await axios.delete(`/api/v1/transactions/${idToDelete}`);
   } catch (error) {
     console.error({ message: error.message });
   }

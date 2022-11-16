@@ -5,7 +5,7 @@ import mongoose from 'mongoose';
 
 dotenv.config();
 
-import itemRouter from './routes/item.router.js';
+import transactionRouter from './routes/transaction.router.js';
 
 const app = express();
 const port = process.env.PORT;
@@ -14,7 +14,7 @@ const dbUrl = process.env.DB_URL;
 app.use(cors());
 app.use(express.json());
 
-app.use("/api/v1/items", itemRouter);
+app.use("/api/v1/transactions", transactionRouter);
 
 mongoose.connect(dbUrl, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => app.listen(port, () => console.log(`Server running on port: ${port}`)))
