@@ -1,13 +1,25 @@
+import classNames from 'classnames';
 import React from 'react';
 import './label.scss';
 
-interface LabelProps extends React.HTMLProps<HTMLLabelElement> { }
+interface LabelProps extends React.LabelHTMLAttributes<HTMLLabelElement> {
+  label: string;
+}
 
-export const Label: React.FC<LabelProps> = ({ id, label, ...props }) => {
+export const Label: React.FC<LabelProps> = ({
+  className,
+  id,
+  label,
+  ...props
+}) => {
+  const labelClasses = classNames({
+    'form-label': true,
+  }, className);
+
   return (
     <label
       htmlFor={id}
-      className={`form-label ${props.className}`}
+      className={labelClasses}
       {...props}
     >
       {label}

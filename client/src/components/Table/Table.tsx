@@ -53,7 +53,7 @@ export const Table: React.FC<TableProps> = ({
                   <td className='align-center padding-none width-s'>
                     <Button
                       variant='delete'
-                      onClick={(e) => handleDelete(e, transaction)}
+                      onClick={(e: React.MouseEvent<HTMLButtonElement>) => handleDelete(e, transaction)}
                     >
                       X
                     </Button>

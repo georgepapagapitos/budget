@@ -1,3 +1,4 @@
+import classNames from 'classnames';
 import React from 'react';
 import './textField.scss';
 
@@ -14,8 +15,9 @@ export const TextField: React.FC<TextFieldProps> = ({
   value,
   ...props
 }) => {
-
-  const textFieldClasses = `text-field${className ? ` ${className}` : ''}`;
+  const textFieldClasses = classNames({
+    'text-field': true,
+  }, className);
 
   return (
     <input

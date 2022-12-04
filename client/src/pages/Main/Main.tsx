@@ -4,7 +4,7 @@ import './main.scss';
 import { Button, Label, Select, Table, TextField } from '../../components';
 import { categories } from '../../constants/categories';
 
-export const Main = () => {
+export const Main: React.FC = () => {
   const initialTransactionState = { name: '', type: '', category: '', amount: 0, };
 
   const [transactionInputValue, setTransactionInputValue] = useState(initialTransactionState);
