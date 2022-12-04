@@ -1,0 +1,15 @@
+export const categories = [
+  { value: 'debt', displayName: 'Debt' },
+  { value: 'entertainment', displayName: 'Entertainment' },
+  { value: 'food', displayName: 'Food' },
+  { value: 'gifts', displayName: 'Gifts' },
+  { value: 'health', displayName: 'Health / medical' },
+  { value: 'home', displayName: 'Home' },
+  { value: 'investing', displayName: 'Investing' },
+  { value: 'personal care', displayName: 'Personal Care' },
+  { value: 'pets', displayName: 'Pets' },
+  { value: 'transportation', displayName: 'Transportation' },
+  { value: 'travel', displayName: 'Travel' },
+  { value: 'utilities', displayName: 'Utilities' },
+  { value: 'other', displayName: 'Other' },
+];

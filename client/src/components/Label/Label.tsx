@@ -1,7 +1,9 @@
 import React from 'react';
 import './label.scss';
 
-export const Label = ({ id, label, ...props }) => {
+interface LabelProps extends React.HTMLProps<HTMLLabelElement> { }
+
+export const Label: React.FC<LabelProps> = ({ id, label, ...props }) => {
   return (
     <label
       htmlFor={id}
