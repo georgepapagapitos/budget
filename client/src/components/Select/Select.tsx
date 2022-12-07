@@ -1,3 +1,4 @@
+import classNames from 'classnames';
 import React from 'react';
 import './select.scss';
 
@@ -12,7 +13,10 @@ export const Select: React.FC<SelectProps> = ({
   value,
   ...props
 }) => {
-  const selectClasses = `select${disabled ? ' disabled' : ''}`;;
+  const selectClasses = classNames({
+    "select": true,
+    "disabled": disabled,
+  }, className);
 
   return (
     <select
