@@ -31,7 +31,7 @@ export const Table: React.FC<TableProps> = ({
   };
 
   return (
-    <>
+    <div className='table-wrapper'>
       <h2 className='table-title' id={title?.toLowerCase()}>{title}</h2>
       {transactionArray &&
         transactionArray.filter(transaction => transaction.type === transactionType).length > 0 ?
@@ -78,6 +78,6 @@ export const Table: React.FC<TableProps> = ({
         :
         <span>No transcations yet...</span>
       }
-    </>
+    </div>
   );
 };

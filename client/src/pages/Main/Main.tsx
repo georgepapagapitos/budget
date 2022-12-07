@@ -4,19 +4,33 @@ import './main.scss';
 import { Button, Label, Select, Table, TextField } from '../../components';
 import { categories } from '../../constants/categories';
 
+type Transaction = {
+  name: string,
+  type: string,
+  category: string,
+  amount: number,
+};
+
 export const Main: React.FC = () => {
-  const initialTransactionState = { name: '', type: '', category: '', amount: 0, };
+  const initialTransactionState: Transaction = { name: '', type: '', category: '', amount: 0, };
 
   const [transactionInputValue, setTransactionInputValue] = useState(initialTransactionState);
-  const [transactionArray, setTransactionArray] = useState([]);
+  const [transactionArray, setTransactionArray] = useState<Transaction[]>([]);
+
+  const fetchTransactions = async () => {
+    const transactions = await getTransactions();
+    setTransactionArray(transactions);
+  };
 
   useEffect(() => {
-    getTransactions(setTransactionArray);
+    fetchTransactions();
   }, []);
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    postTransaction(transactionArray as any, transactionInputValue, setTransactionArray);
+    const postedTransaction = await postTransaction(transactionInputValue);
+    setTransactionArray([...transactionArray, postedTransaction]);
+    fetchTransactions();
     setTransactionInputValue(initialTransactionState);
   };
 
@@ -104,7 +118,7 @@ export const Main: React.FC = () => {
           </div>
         </form>
       </div>
-      <div>
+      <div style={{ display: 'flex', justifyContent: 'space-between' }}>
         <Table title='Income' transactionArray={transactionArray} transactionType='income' setTransactionArray={setTransactionArray} />
         <Table title='Expenses' transactionArray={transactionArray} transactionType='expense' setTransactionArray={setTransactionArray} />
       </div>
