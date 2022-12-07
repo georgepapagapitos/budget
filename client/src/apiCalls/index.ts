@@ -1,18 +1,23 @@
 import axios from 'axios';
 
-export const getTransactions = async (setTransactionArray: React.Dispatch<React.SetStateAction<any>>) => {
+export const getTransactions = async () => {
   try {
     const transactions = await axios.get('/api/v1/transactions');
-    setTransactionArray(transactions.data);
+    return transactions.data;
   } catch (error) {
     if (error instanceof Error) console.error({ message: error.message });
   }
 };
 
-export const postTransaction = async (transactionArray: [], transactionToPost: any, setTransactionArray: React.Dispatch<React.SetStateAction<any>>) => {
+export const postTransaction = async (transactionToPost: {
+  name: string,
+  type: string,
+  category: string,
+  amount: number,
+}) => {
   try {
     const postedTransaction = await axios.post('/api/v1/transactions', transactionToPost);
-    setTransactionArray([...transactionArray, postedTransaction.data]);
+    return postedTransaction.data;
   } catch (error) {
     if (error instanceof Error) console.error({ message: error.message });
   }

@@ -2,16 +2,20 @@
   border-collapse: collapse;
   border: 1px solid #000000;
   font-size: 1rem;
-  min-width: 100%;
   text-align: left;
 
-  .table-head,
-  .table-foot {
+  &-wrapper {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &-head,
+  &-foot {
     background-color: #FFFFFF;
     font-weight: 700;
   }
 
-  .table-body {
+  &-body {
     background-color: #FFFFFF;
   }
 

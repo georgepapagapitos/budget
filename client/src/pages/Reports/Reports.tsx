@@ -9,7 +9,7 @@ export const Reports: React.FC = () => {
   const [reportRange, setReportRange] = useState('allTime');
 
   useEffect(() => {
-    getTransactions(setTransactions);
+    getTransactions();
   }, []);
 
   const incomeArray = transactions.filter(t => t.type === 'income');
