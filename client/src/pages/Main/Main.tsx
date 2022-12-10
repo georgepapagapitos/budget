@@ -43,7 +43,7 @@ export const Main: React.FC = () => {
       <div className='form-wrapper'>
         <h2 className='form-title' id='add-transaction'>Add transaction</h2>
         <form className='form' onSubmit={handleSubmit}>
-          <Label id='transaction-name-input' label='Name' />
+          <Label id='transaction-name-input'>Name</Label>
           <span className='helper-text'>Enter a name for the transaction</span>
           <TextField
             name='name'
@@ -51,7 +51,7 @@ export const Main: React.FC = () => {
             onChange={({ target }: React.ChangeEvent<HTMLInputElement>) => handleChange(target.name, target.value)}
             value={transactionInputValue.name}
           />
-          <Label id='transaction-amount-input' label='Amount' />
+          <Label id='transaction-amount-input'>Amount</Label>
           <span className='helper-text'>Enter a transaction amount (USD)</span>
           <TextField
             name='amount'
@@ -106,12 +106,12 @@ export const Main: React.FC = () => {
           </Select>
           <div className='button-group'>
             <Button
-              variant='cancel'
+              variant='secondary'
               onClick={() => setTransactionInputValue(initialTransactionState)}
             >Cancel
             </Button>
             <Button
-              variant='submit'
+              variant='primary'
             >
               Submit
             </Button>

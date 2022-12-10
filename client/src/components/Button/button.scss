@@ -1,55 +1,54 @@
 .button {
   border: none;
+  height: 36px;
   outline: none;
   padding: 0.5rem 1rem;
-  border-radius: 0.25rem;
+  border-radius: 5px;
   cursor: pointer;
   font-weight: 700;
 
-  &-submit {
-    box-shadow: 0 0 0 1px #00008b;
-    background-color: #87ceeb;
-    color: #00008b;
+  &-primary {
+    background-color: purple;
+    color: white;
 
     &:hover {
-      box-shadow: 0 0 0 1px #02025f;
-      background-color: #38addc;
-      color: #02025f;
+      background-color: #580058;
     }
 
     &:focus {
-      box-shadow: 0 0 0 1px #02025f, 0 0 0 2px #FFFFFF, 0 0 0 4px #00008b;
+      box-shadow: 0 0 0 2px white, 0 0 0 4px purple;
+    }
+
+    &:active {
+      background-color: #510c51;
     }
   }
 
-  &-cancel {
-    box-shadow: 0 0 0 1px #e4470d;
-    background-color: transparent;
-    color: #e4470d;
+  &-secondary {
+    border: 1px solid purple;
+    color: purple;
+    background-color: #fff;
 
     &:hover {
-      box-shadow: 0 0 0 1px #892906;
-      background-color: #f0c2b2;
-      color: #892906;
+      background-color: #9267922d;
     }
 
     &:focus {
-      box-shadow: 0 0 0 1px #892906, 0 0 0 2px #FFFFFF, 0 0 0 4px #892906;
+      box-shadow: 0 0 0 2px white, 0 0 0 4px purple;
+    }
+
+    &:active {
+      background-color: #9267923d;
+      ;
     }
   }
 
-  &-delete {
-    background-color: transparent;
-    border-radius: 0;
-    color: #ff0000;
-    padding: 0.25rem;
-
-    &:hover {
-      color: #b20707;
-    }
+  &-tertiary {
+    background: transparent;
+    color: #200020;
 
     &:focus {
-      box-shadow: 0 0 0 2px #ff0000;
+      box-shadow: 0 0 0 2px #fff, 0 0 0 4px #200020;
     }
   }
 }

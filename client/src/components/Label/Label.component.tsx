@@ -2,14 +2,12 @@ import classNames from 'classnames';
 import React from 'react';
 import './label.scss';
 
-interface LabelProps extends React.LabelHTMLAttributes<HTMLLabelElement> {
-  label: string;
-}
+export interface LabelProps extends React.LabelHTMLAttributes<HTMLLabelElement> { }
 
 export const Label: React.FC<LabelProps> = ({
+  children,
   className,
   id,
-  label,
   ...props
 }) => {
   const labelClasses = classNames({
@@ -22,7 +20,7 @@ export const Label: React.FC<LabelProps> = ({
       className={labelClasses}
       {...props}
     >
-      {label}
+      {children}
     </label>
   );
 };

@@ -1,9 +1,9 @@
 import React from 'react';
 import { deleteTransaction } from '../../apiCalls';
-import { Button } from '../Button/Button';
+import { Button } from '../Button/Button.component';
 import './table.scss';
 
-interface TableProps extends React.HTMLProps<HTMLTableElement> {
+export interface TableProps extends React.HTMLProps<HTMLTableElement> {
   title?: string;
   transactionArray?: any[];
   transactionType?: string;
@@ -52,7 +52,7 @@ export const Table: React.FC<TableProps> = ({
                   <td className='transaction-amount align-right'>${transaction.amount}</td>
                   <td className='align-center padding-none width-s'>
                     <Button
-                      variant='delete'
+                      variant='tertiary'
                       onClick={(e: React.MouseEvent<HTMLButtonElement>) => handleDelete(e, transaction)}
                     >
                       X

@@ -2,7 +2,7 @@ import classNames from 'classnames';
 import React from 'react';
 import './select.scss';
 
-interface SelectProps extends React.HTMLProps<HTMLSelectElement> { }
+export interface SelectProps extends React.HTMLProps<HTMLSelectElement> { }
 
 export const Select: React.FC<SelectProps> = ({
   children,
