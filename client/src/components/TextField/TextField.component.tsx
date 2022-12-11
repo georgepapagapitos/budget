@@ -2,7 +2,7 @@ import classNames from 'classnames';
 import React from 'react';
 import './textField.scss';
 
-interface TextFieldProps extends React.HTMLProps<HTMLInputElement> { }
+export interface TextFieldProps extends React.HTMLProps<HTMLInputElement> { }
 
 export const TextField: React.FC<TextFieldProps> = ({
   autoComplete,

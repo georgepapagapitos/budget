@@ -2,28 +2,25 @@ import React from 'react';
 import classNames from 'classnames';
 import './button.scss';
 
-interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: 'submit' | 'cancel' | 'reset' | 'delete';
+export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  variant?: 'primary' | 'secondary' | 'tertiary';
 }
 
 export const Button: React.FC<ButtonProps> = ({
   children,
   className,
-  onClick,
-  variant = 'submit',
+  variant = 'primary',
   ...props
 }: ButtonProps) => {
   const buttonClasses = classNames({
     'button': true,
-    'button-submit': variant === 'submit',
-    'button-cancel': variant === 'cancel',
-    'button-reset': variant === 'reset',
-    'button-delete': variant === 'delete',
+    'button-primary': variant === 'primary',
+    'button-secondary': variant === 'secondary',
+    'button-tertiary': variant === 'tertiary',
   }, className);
   return (
     <button
       className={buttonClasses}
-      onClick={onClick}
       {...props}
     >
       {children}
